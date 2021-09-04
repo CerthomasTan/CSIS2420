@@ -45,7 +45,7 @@ public class Week2Part1 {
 		}
 		
 		//print out total
-		System.out.printf("%s %,d %n","Total", total);
+		System.out.printf("Total sum of integers from %d to %d is %,d %n", min, max, total);
 		System.out.printf("%n%n");
 		
 		//Create 2d Array with values
