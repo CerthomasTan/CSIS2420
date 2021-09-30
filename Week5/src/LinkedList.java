@@ -15,6 +15,7 @@ public class LinkedList
 
 	Node head;
 	
+	//add node to end of linked list
 	public void append(int data)
 	{
 		if (head == null)
@@ -30,6 +31,7 @@ public class LinkedList
 		current.next = new Node(data);
 	}
 	
+	//prints linked list to console
 	public void printList()
 	{
 		Node current = head;
@@ -42,6 +44,7 @@ public class LinkedList
 		System.out.println("null");
 	}
 	
+	//add node to begining of linked list
 	public void prepend(int data) {
 		//Add node if no node exists in linked list
 		if (head == null)
@@ -57,6 +60,7 @@ public class LinkedList
 
 	}
 	
+	//deletes all instances of node
 	public void delete(int data) {
 		//check if any nodes exists in list
 		if(head == null) {
@@ -87,11 +91,10 @@ public class LinkedList
 		if(!isFound) {
 			System.out.println(data + " was not found");
 		}
-
-		
-		
 	}
 	
+	
+	//searches for all instances of node, will print to console the address location
 	public void search(int data) {
 		int index = 0;
 		Node current = head;
@@ -104,7 +107,7 @@ public class LinkedList
 		}
 	}
 	
-	
+	//returns length of nodes/number of nodes in linked list
 	public int length() {
 		int length = 1;
 		
@@ -123,6 +126,7 @@ public class LinkedList
 	
 	
 	//Challenge 1
+	//create a random linked list with 800 nodes
 	public void randomTest() {
 		clear();
 		Random rand = new Random();
@@ -133,12 +137,13 @@ public class LinkedList
 	
 	
 	//Challenge2 methods
-	
+	//clear linked list
 	public void clear(){
 		//clears head, all other nodes are orphaned
 		head = null;
 	}
 	
+	//returns true if data is found in linked list
 	public boolean contains(int data) {
 		Node current = head;
 		boolean isFound = false;
@@ -152,6 +157,7 @@ public class LinkedList
 		return isFound;
 	}
 	
+	//returns the number of occurences 
 	public int occurrences(int data) {
 		Node current = head;
 		int occurences = 0;
@@ -164,10 +170,12 @@ public class LinkedList
 		return occurences;
 	}
 	
+	//deletes the first node
 	public void deleteHead() {
 		head = head.next;
 	}
 	
+	//deletes the last node
 	public void deleteTail() {
 		Node current = head;
 		while(current.next.next != null) {
@@ -176,6 +184,7 @@ public class LinkedList
 		current.next = null;
 	}
 	
+	//deletes first instance of node
 	public void deleteFirstOccurence(int data) {
 		//check if any nodes exists in list
 		if(head == null) {
@@ -209,10 +218,12 @@ public class LinkedList
 		//TODO
 	}
 	
+	//deletes all instances of the nodes containing data argument 
 	public void deleteAllOccurence(int data) {
 		delete(data);
 	}
 	
+	//creates a linked list from array
 	public LinkedList fromArray(int[] arr) {
 		LinkedList ll = new LinkedList();
 		for(int x: arr) {
@@ -221,6 +232,7 @@ public class LinkedList
 		return ll;
 	}
 	
+	//returns true if linked list is empty
 	public boolean isEmpty() {
 		if(head == null) {
 			return true;
@@ -230,6 +242,7 @@ public class LinkedList
 		}
 	}
 	
+	//returns an array
 	public int[] toArray() {
 		int[] arr = new int[getLength()];
 		Node current = head;
@@ -240,6 +253,7 @@ public class LinkedList
 		return arr;
 	}
 	
+	//returns address of position
 	public int getPosition(int data) {
 		int index = 0;
 		Node current = head;
@@ -253,6 +267,7 @@ public class LinkedList
 		return -1;
 	}
 
+	//used as a private get length method without printing to console
 	private int getLength() {
 		int length = 1;
 		
