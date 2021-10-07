@@ -26,7 +26,7 @@ public class Week2Part2 {
 		 * This will loop until an appropriate data file is available 
 		 */
 		while(!dataFile.exists() || dataFile.length() < 0 ) {
-			System.out.println("File not found. Exiting Program");
+			System.out.println("File not found");
 			System.out.println("Please Enter Address of File:");
 			fileAddress = sc.nextLine(); 
 			dataFile = new File(fileAddress); 
