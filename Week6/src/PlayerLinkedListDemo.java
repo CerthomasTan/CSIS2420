@@ -7,13 +7,16 @@ public class PlayerLinkedListDemo {
 	public static void main(String[] args) throws IOException {
 		PlayerLinkedList pll = new PlayerLinkedList();
 		Scanner sc = new Scanner(System.in);
+		//print title
 		System.out.println("-----------Player List Console-----------");
-		
+		//read data from file
 		readPlayerData(pll, sc);
+		//main menu program
 		menu(pll, sc);
 		
 	}
 	
+	//prints menu
 	public static void printMenu() {
 		System.out.println("------------Menu----------");
 		System.out.println("1. Add New Player");
@@ -81,10 +84,16 @@ public class PlayerLinkedListDemo {
 		}
 	}
 
+	//creates console for user interactions
 	public static void menu(PlayerLinkedList pll, Scanner sc) {
+		//set program loop
 		Boolean appOpen = true;
 		do {
+			//prints menu, prompt user for input
 			printMenu();
+			
+			//check if the a number was entered, catches exception if non numbers are entered, 
+			//program will loop until user enters in a valid entry.
 			String userInput;
 			int userInt = -1;
 			boolean validNumber = false; 
@@ -97,6 +106,8 @@ public class PlayerLinkedListDemo {
 					System.out.println("Not a valid Number, please enter a whole number");
 				};
 			}
+			
+			//Switch case to check users input. If valid, command is ran
 			switch(userInt) {
 				//Exit program
 				case 0:
@@ -112,7 +123,7 @@ public class PlayerLinkedListDemo {
 					deletePlayer(pll,sc);
 					pressEnterToContinue(sc);
 					break;
-				//Get Total count of List
+				//Report Total count of List
 				case 3:
 					System.out.println("Total number of Players: " + pll.length());
 					pressEnterToContinue(sc);
@@ -127,7 +138,7 @@ public class PlayerLinkedListDemo {
 					searchPlayerID(pll, sc);
 					pressEnterToContinue(sc);
 					break;
-				//Search by Players User Name
+				//Search by Players Real User Name
 				case 6:
 					searchPlayerUserName(pll,sc);
 					pressEnterToContinue(sc);
@@ -152,12 +163,15 @@ public class PlayerLinkedListDemo {
 				default:
 					System.out.println("value is invalid, please try again");
 			}
-		} while(appOpen);
+		} while(appOpen); //loop continues until user uses exit command
 		
+		//Tells user that they are exiting program
 		System.out.println("exiting program");
 	}
 
+	//prompts user for inputs and calls the linked list to add player
 	public static void addPlayer(PlayerLinkedList pll, Scanner sc) {
+		//prompt user for information
 		System.out.println("--------AddPlayer--------");
 		System.out.println("Enter First Name");
 		String firstName = sc.nextLine();
@@ -168,6 +182,7 @@ public class PlayerLinkedListDemo {
 		System.out.println("Enter Player Type");
 		String playerType = sc.nextLine();
 		
+		//assigns random number between 1000 - 9999, checks if number is avaliable.
 		Random rand = new Random();
 		Boolean numAvailable = false;
 		System.out.println("Assigning ID.....");
@@ -178,14 +193,20 @@ public class PlayerLinkedListDemo {
 				numAvailable = !numAvailable;
 			}
 		}
+		
+		//if successful, player is prompted that the player was created
 		System.out.println("Player Created");
 		pll.append(numID, firstName, lastName, playerName, playerType, 0, 0);
 	}
 
+	//prompt user for inputs and deletes player
 	public static void deletePlayer(PlayerLinkedList pll, Scanner sc) {
+		//prompt user for inputs
+		Boolean CommandOpen = true;
 		System.out.println("enter user ID to Delete or press e to return to main menu");
 		String userInput = sc.nextLine();
-		Boolean CommandOpen = true;
+		
+		//parse user input to int and will ask again if user inputs non-integer values
 		int userIDInput = -1;
 		while(CommandOpen) {
 			if(userInput.equals("e")) {return;}
@@ -194,8 +215,13 @@ public class PlayerLinkedListDemo {
 			} catch(NumberFormatException e) {
 				System.out.print("Invalid Number, ");
 			}
+			//deletes node
 			int tempLength = pll.length();
 			pll.delete(userIDInput);
+			
+			//checks if delete works by comparing lengths. If previous length is greater than current length,
+			//it will indicate to user that the player wasn't found and delete didnt work. Will ask user again
+			//if they want to try again or exit
 			if(tempLength > pll.length()) {
 				CommandOpen = false;
 				System.out.println("Player was removed from List");
@@ -207,11 +233,15 @@ public class PlayerLinkedListDemo {
 		}
 		
 	}
-
+	
+	//prompt user for ID and prints player if found.
 	public static void searchPlayerID(PlayerLinkedList pll, Scanner sc) {
+		//prompt user for input
 		System.out.println("enter user ID to search player or enter \"e\" to return ");
 		String userInput = sc.nextLine();
 		Boolean CommandOpen = true;
+		
+		//Trys to parse into int. Loops if it fails or did not find ID. Displays to console if ID is found
 		int userIDInput = -1;
 		while(CommandOpen) {
 			if(userInput.equals("e")) {return;}
@@ -233,15 +263,19 @@ public class PlayerLinkedListDemo {
 		}
 	}
 	
+	//prompts user for Player User/Real Name and prints if found
 	public static void searchPlayerUserName(PlayerLinkedList pll, Scanner sc) {
 		Boolean commandOpen = true;
 		
+		//prompt user for first name, last name
 		while(commandOpen) {
 			System.out.println("Enter First Name (case-sensative)");
 			String firstName = sc.nextLine();
 			System.out.println("Enter last  Name (case-sensative)");
 			String lastName = sc.nextLine();
 			PlayerNode searchNode = pll.search(firstName, lastName);
+			
+			//searches list if name is found, will prompt user to either exit or try again if unable to find
 			if(searchNode == null){
 				System.out.println("Player Not Found, type e if you want to cancel search or press enter to try again");
 				if(sc.nextLine().equals("e")) {
@@ -249,6 +283,7 @@ public class PlayerLinkedListDemo {
 					return;
 				}
 			}
+			//if user is found, user will be printed out
 			else {
 				pll.printPlayerListHeader();
 				System.out.println(searchNode);
@@ -257,13 +292,16 @@ public class PlayerLinkedListDemo {
 		}
 	}
 	
+	//prompts user for Player game Name and prints if found
 	public static void searchPlayerGameName(PlayerLinkedList pll, Scanner sc) {
 		Boolean commandOpen = true;
-			
+		
+		//prompt user for player game name
 		while(commandOpen) {
 			System.out.println("Enter Player Game Name (case-sensative)");
 			String gamerName = sc.nextLine();
 			PlayerNode searchNode = pll.search(gamerName);
+			//if not found, prompt user to continue or exit
 			if(searchNode == null){
 				System.out.println("Player Not Found, type e if you want to cancel search or press enter to try again");
 				if(sc.nextLine().equals("e")) {
@@ -271,6 +309,7 @@ public class PlayerLinkedListDemo {
 					return;
 				}
 			}
+			//if found player will be printed
 			else {
 				pll.printPlayerListHeader();
 				System.out.println(searchNode);
@@ -278,7 +317,8 @@ public class PlayerLinkedListDemo {
 			}
 		}
 	}
-
+	
+	//method to create a wait statement and prompt user to press enter to continue
 	public static void pressEnterToContinue(Scanner sc) {
 		System.out.println("press enter to continue......");
 		sc.nextLine();

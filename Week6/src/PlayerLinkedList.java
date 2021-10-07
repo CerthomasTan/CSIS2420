@@ -131,6 +131,7 @@ public class PlayerLinkedList {
 		return null;
 	}
 	
+	//search using playerName
 	public PlayerNode search(String playerName) {
 		if(head == null) {
 			return null;
@@ -178,6 +179,7 @@ public class PlayerLinkedList {
 		return;
 	}
 	
+	//returns player and score
 	public String highScore() {
 		String report;
 		if(head == null) {
@@ -202,6 +204,7 @@ public class PlayerLinkedList {
 		return report;
 	}
 	
+	//returns player will lowest score
 	public String lowScore() {
 		String report;
 		if(head == null) {
@@ -226,6 +229,7 @@ public class PlayerLinkedList {
 		return report;
 	}
 	
+	//prints header to console
 	public void printPlayerListHeader() {
 		System.out.printf("%-15s %-15s %-15s %-15s %-15s %-15s %-15s\n", 
 						  "playerID", 

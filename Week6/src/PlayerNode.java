@@ -23,7 +23,7 @@ public class PlayerNode {
 		this.totalScore = totalScore;
 	}
 	
-	
+	//to string method.
 	public String toString() {
 		return String.format("%-15d %-15s %-15s %-15s %-15s %-15.2f %-15.0f\n",
 				  playerID,
