@@ -52,7 +52,7 @@ public class BSTDemo
 		System.out.println("Creating Random Binary Tree...");
 		
 		bst = new BinarySearchTree();
-		int treeSize = 10000000;
+		int treeSize = 10000;
 		Random rand = new Random();
 		for(int i = 0; i < treeSize; i++) {
 			bst.insert(rand.nextInt(100) + 1);
