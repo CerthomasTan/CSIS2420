@@ -205,7 +205,7 @@ public class BinarySearchTree
 		int data = n.data;
 		BSTNode current = n;
 		while(current.left != null) {
-			data = root.left.data;
+			data = current.left.data;
 			current = current.left;
 		}
 		return data;
